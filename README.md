@@ -1,1 +1,1 @@
-# javascript-wokrout
+# javascript-workout
