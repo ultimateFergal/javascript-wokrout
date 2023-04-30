@@ -71,3 +71,38 @@ console.log(bst.contains(59), 'returns true');
 console.log(bst.contains(10), 'returns true');
 console.log(bst.contains(15), 'returns false');
 
+
+// DEPTH FRIST TRAVERSAL - IN ORDER. it will travel throuhg all of the nodes in the BST from the top down to the bottom of every branch
+
+function log(value) {
+    console.log(value);
+}
+
+// BST.prototype.depthFirstTraversal = function (iteratorFunc) {
+//     // in order from least to greates
+//     if (this.left) this.left.depthFirstTraversal(iteratorFunc);
+//     iteratorFunc(this.value);
+//     if (this.right) this.right.depthFirstTraversal(iteratorFunc);
+// }
+
+// bst.depthFirstTraversal(log); // all nodes values should be printed
+
+BST.prototype.depthFirstTraversal = function (iteratorFunc, order) {
+    // with any order
+    if (order === 'pre-order') iteratorFunc(this.value);
+    if (this.left) this.left.depthFirstTraversal(iteratorFunc, order);
+    if (order === 'in-order') iteratorFunc(this.value);
+    if (this.right) this.right.depthFirstTraversal(iteratorFunc, order);
+    if (order === 'post-order') iteratorFunc(this.value);
+}
+
+bst.depthFirstTraversal(log, 'in-order'); // all nodes values should be printed in order
+console.log('**********************')
+bst.depthFirstTraversal(log, 'pre-order'); // all nodes values should be printed pre order first left and the right sides form the top
+console.log('**********************')
+bst.depthFirstTraversal(log, 'post-order'); // all nodes values should be printed post order first left and the right sides from the bottom
+
+
+
+
+
