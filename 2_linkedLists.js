@@ -60,7 +60,7 @@ console.log(myLL.tail.prev.prev.prev);
 
 
 // removeHead Function added by using prototype on the LinkedList constructor
-LinkedList.prototype.removeHead = function (value) {
+LinkedList.prototype.removeHead = function () {
     if (!this.head) return null;
     var val = this.head.value;
     this.head = this.head.next;
@@ -79,3 +79,65 @@ lll.addToHead(3000);
 
 lll.removeHead();
 console.log(lll.removeHead())
+
+// removeTail Function added by using prototype on the LinkedList constructor
+LinkedList.prototype.removeTail = function() {
+    if (!this.tail) return null;
+    var val = this.tail.value;
+    this.tail = this.tail.prev;
+  
+    if (this.tail) this.tail.next = null;
+    else this.head = null;
+    return val;
+  }
+  
+  var llt = new LinkedList();
+  
+  llt.addToHead('one');
+  llt.addToHead('two');
+  llt.addToHead('three');
+  
+  console.log(llt.removeTail());
+
+  //  SEARCH METHOD
+LinkedList.prototype.search = function (searchValue) {
+    var currentNode = this.head;
+    var counter = 0;
+    while(currentNode) {
+      if (currentNode.value === searchValue) {
+        return currentNode.value;
+      }
+      currentNode = currentNode.next;
+    }
+    return null;
+}
+
+console.log(myLL.search(70));
+console.log(myLL.search('world'));
+console.log(myLL.search(10));
+
+//  INDEX OF METHOD
+LinkedList.prototype.indexOf = function (value) {
+  var indexes = [];
+  var currentIndex = 0;
+  var currentNode = this.head;
+
+  while(currentNode) {
+    if (currentNode.value === value) {
+      indexes.push(currentIndex);
+    }
+    currentNode = currentNode.next;
+    currentIndex++;
+  }
+  return indexes;
+}
+
+myLL.addToTail(1);
+myLL.addToTail(5);
+myLL.addToTail(3);
+myLL.addToTail(5);
+myLL.addToTail(8);
+myLL.addToTail(7);
+myLL.addToTail(5);
+
+console.log(myLL.indexOf(5));
