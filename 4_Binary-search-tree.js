@@ -101,8 +101,40 @@ console.log('**********************')
 bst.depthFirstTraversal(log, 'pre-order'); // all nodes values should be printed pre order first left and the right sides form the top
 console.log('**********************')
 bst.depthFirstTraversal(log, 'post-order'); // all nodes values should be printed post order first left and the right sides from the bottom
+console.log('**********************')
 
 
+// BREADTH FTRST TRAVERSAL - level by level - useful to define herarchy or level of command
+BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
+    var queue = [this]; // this is referring to the root node of the BST
+    while (queue.length) {
+        var treeNode = queue.shift(); // takes the first node out of the queue and stores it in a variable
+        iteratorFunc(treeNode);
+        if (treeNode.left) queue.push(treeNode.left); // pushing them in the back of the queue
+        if (treeNode.right) queue.push(treeNode.right);
+    }
+}
+
+function log1(node) {
+    console.log(node.value, 'BREADTH FTRST TRAVERSAL');
+}
+
+bst.breadthFirstTraversal(log1); // testing
+
+BST.prototype.getMinVal = function() {
+    if (this.left) return this.left.getMinVal();
+    else return this.value
+}
+
+BST.prototype.getMaxVal = function() {
+    if (this.right) return this.right.getMaxVal();
+    else return this.value
+}
+
+console.log('min: ', bst.getMinVal());
+console.log('max: ', bst.getMaxVal());
+
+// binary search tress are more productive when they are balanced
 
 
 
